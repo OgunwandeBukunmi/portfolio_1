@@ -230,10 +230,11 @@ export default function Home() {
 
   const skills: string[] = ["HTML", "CSS", "javaScript", "ReactJS", "NextJS", "Git", "GitHub", "Figma", "Tailwind CSS", ""] // and many more
 
+
   return (
     <>
       {/* loeader */}
-      <section className="absolute inset-0 w-[100vw] h-svh bg-red-500 absolute z-10 loader overflow-hidden flex items-center justify-center">
+      <section className="fixed inset-0 w-screen h-screen bg-red-500 z-50 loader overflow-hidden flex items-center justify-center">
 
         <div className="words flex flex-row items-center justify-center gap-2 ">
           <p className={`${panchang.className} md:text-8xl text-4xl font-extrabold tracking-widest leading-tight`}>W</p>
