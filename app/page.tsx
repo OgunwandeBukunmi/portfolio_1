@@ -67,47 +67,47 @@ export default function Home() {
     };
   }, []);
 
-  // useEffect(() => {
-  //   if (loading) {
-  //     document.body.style.overflow = "hidden"
-  //   } else {
-  //     document.body.style.overflow = "auto"
-  //   }
+  useEffect(() => {
+    if (loading) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "auto"
+    }
 
-  // }, [loading])
+  }, [loading])
 
-  // useEffect(() => {
-  //   const ctx = gsap.context(() => {
-  //     gsap.set(".words p", {
-  //       yPercent: 1000,
-  //     });
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.set(".words p", {
+        yPercent: 1000,
+      });
 
-  //     const tl = gsap.timeline({
-  //       defaults: {
-  //         ease: "power2.out",
-  //       },
-  //     });
+      const tl = gsap.timeline({
+        defaults: {
+          ease: "power2.out",
+        },
+      });
 
-  //     tl.to(".words p", {
-  //       yPercent: 0,
-  //       duration: 0.6,
-  //       stagger: 0.08,
-  //       delay: 1.5,
-  //     }).to(".words p", {
-  //       yPercent: -1000,
-  //       duration: 1.5,
-  //       stagger: 0.08,
-  //       delay: 1
-  //     }).to(".loader", {
-  //       yPercent: -100,
-  //       duration: 1,
-  //       ease: "power3.inOut",
-  //       onComplete: () => setLoading(false),
-  //     });
-  //   });
+      tl.to(".words p", {
+        yPercent: 0,
+        duration: 0.6,
+        stagger: 0.08,
+        delay: 1.5,
+      }).to(".words p", {
+        yPercent: -1000,
+        duration: 1.5,
+        stagger: 0.08,
+        delay: 1
+      }).to(".loader", {
+        yPercent: -100,
+        duration: 1,
+        ease: "power3.inOut",
+        onComplete: () => setLoading(false),
+      });
+    });
 
-  //   return () => ctx.revert();
-  // }, []);
+    return () => ctx.revert();
+  }, []);
 
 
 
@@ -233,7 +233,7 @@ export default function Home() {
   return (
     <>
       {/* loeader */}
-      {/* <section className="absolute inset-0 w-[100vw] h-svh bg-red-500 absolute z-10 loader overflow-hidden flex items-center justify-center">
+      <section className="absolute inset-0 w-[100vw] h-svh bg-red-500 absolute z-10 loader overflow-hidden flex items-center justify-center">
 
         <div className="words flex flex-row items-center justify-center gap-2 ">
           <p className={`${panchang.className} md:text-8xl text-4xl font-extrabold tracking-widest leading-tight`}>W</p>
@@ -243,7 +243,7 @@ export default function Home() {
           <p className={`${panchang.className} md:text-8xl text-4xl font-extrabold tracking-widest leading-tight`}>E</p>
         </div>
 
-      </section> */}
+      </section>
 
 
       {/* navbar */}
