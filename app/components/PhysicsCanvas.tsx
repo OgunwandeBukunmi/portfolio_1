@@ -65,26 +65,36 @@ export default function PhysicsCanvas() {
                 const nodes =
                     container?.parentElement?.querySelectorAll<HTMLElement>('.physics-pill') ?? [];
 
+                const cw = container?.clientWidth ?? 800;
+                const ch = container?.clientHeight ?? 600;
+                // Scale pill widths down on narrow viewports so they fit
+                const widthScale = cw < 640 ? 0.65 : cw < 1024 ? 0.8 : 1;
+
                 nodes.forEach((node) => {
                     const {
                         word = '',
                         background = '#6C5CE7',
                         textColor = '#FFFFFF',
-                        x = '0',
-                        y = '0',
+                        x = '50',
+                        y = '50',
                         rotation = '0',
                         width = '100',
                     } = node.dataset;
+
+                    // x/y come in as percentages (0–100); convert to pixels
+                    const pxX = (parseFloat(x) / 100) * cw;
+                    const pxY = (parseFloat(y) / 100) * ch;
+                    const scaledWidth = parseFloat(width) * widthScale;
 
                     pills.push(
                         new ColoredPill(p, world, {
                             word,
                             background,
                             textColor,
-                            x: parseFloat(x),
-                            y: parseFloat(y),
+                            x: pxX,
+                            y: pxY,
                             rotation: parseFloat(rotation),
-                            width: parseFloat(width),
+                            width: scaledWidth,
                         })
                     );
                 });
