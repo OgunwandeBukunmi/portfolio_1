@@ -48,7 +48,24 @@ const SKILLS = [
 export default function Home() {
   const [loading, setLoading] = useState(true)
 
+  // Lenis smooth scroll
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    });
 
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
 
   // useEffect(() => {
   //   if (loading) {
@@ -259,7 +276,17 @@ export default function Home() {
 
 
       {/* hero */}
-      <section className="min-h-screen w-full flex flex-col-reverse md:flex-row items-center justify-center gap-12 px-6 md:px-12 py-16">
+      <section className="relative min-h-screen w-full flex flex-col-reverse md:flex-row items-center justify-center gap-12 px-6 md:px-12 py-16">
+
+        {/* Grid overlay */}
+        <div
+          className="pointer-events-none absolute inset-0 -z-5"
+          style={{
+            backgroundImage:
+              'linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)',
+            backgroundSize: '60px 60px',
+          }}
+        />
 
         {/* Left */}
         <div className="w-full md:w-1/2 flex justify-center">
