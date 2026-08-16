@@ -529,9 +529,9 @@ export default function Home() {
 
 export function PillPhysicsDemo() {
   return (
-    <main className="relative min-h-screen overflow-hidden  ">
+    <main className="relative min-h-[70vh] overflow-hidden  ">
       {/* z-20 keeps real UI clickable above the canvas (z-10) below it */}
-      <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+      <div className="absolute inset-0 flex  justify-center -z-20 pointer-events-none">
         <h1
           className={`${panchang.className}
       text-6xl
