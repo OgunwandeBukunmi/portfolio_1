@@ -9,6 +9,7 @@ import gsap from "gsap";
 import Matter from "matter-js";
 import Lenis from "lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import TextSmearHover from "./components/smeartext";
 
 import dynamic from 'next/dynamic';
 import Pill from './components/PILL';
@@ -236,8 +237,20 @@ export default function Home() {
     story: "Build a Portfolio for her"
   },
   {
-
-  }
+    project: "University Hub",
+    review: "",
+    story: "Build a platform for university students to seek help with their projects"
+  },
+  {
+    project: "Kinad Law firm",
+    review: "",
+    story: "Built a website for a law firm that I cold Emailed on Google"
+  },
+  {
+    project: "Ecommerce Store",
+    review: "",
+    story: "A fully functional e-commerce store with payment gateway integration"
+  },
 
   ]
 
@@ -528,8 +541,11 @@ export default function Home() {
 
       </section>
 
-      {/* footer  https://www.youtube.com/watch?v=qqq4E6PU2vQ */}
+      {/* footer  https://www.youtube.com/watch?v=qqq4E6PU2vQ https://www.youtube.com/watch?v=zlp4Hj5EMCc */}
       {/* <footer></footer> */}
+      <section className="h-screen w-full relative">
+        <TextSmearHover />
+      </section>
     </>
 
 
