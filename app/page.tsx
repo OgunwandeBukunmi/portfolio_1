@@ -257,7 +257,7 @@ export default function Home() {
   return (
     <>
       {/* loeader */}
-      <section className="fixed inset-0 w-screen h-[200vh] bg-red-500 z-50 loader overflow-hidden flex items-center justify-center">
+      <section className="fixed inset-0 w-screen h-[200vh] bg-red-500 z-50 loader overflow-hidden flex items-center justify-center -translate-y-50">
 
         <div className="words flex flex-row items-center justify-center gap-2 ">
           <p className={`${panchang.className} md:text-8xl text-4xl font-extrabold tracking-widest leading-tight`}>W</p>
