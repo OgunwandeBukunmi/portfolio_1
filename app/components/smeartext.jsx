@@ -26,7 +26,8 @@ export default function TextSmearHover() {
     ctx.fillStyle = "#000000";
     ctx.fillRect(0, 0, w, h);
 
-    const fontSize = Math.min(w * 0.72, h * 0.82);
+    const isMobile = w < 768;
+    const fontSize = isMobile ? Math.min(w * 0.4, h * 0.5) : Math.min(w * 0.72, h * 0.82);
     ctx.font = `900 ${fontSize}px 'VT323', monospace`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
@@ -61,16 +62,43 @@ export default function TextSmearHover() {
   }, [dims]);
 
   useEffect(() => {
-    const onMove = (e) => {
+    const updatePosition = (clientX, clientY) => {
       if (!containerRef.current) return;
       const rect = containerRef.current.getBoundingClientRect();
       mouse.current = {
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top
+        x: clientX - rect.left,
+        y: clientY - rect.top
       };
     };
-    window.addEventListener("mousemove", onMove);
-    return () => window.removeEventListener("mousemove", onMove);
+
+    const onMouseMove = (e) => updatePosition(e.clientX, e.clientY);
+
+    const onTouchMove = (e) => {
+      if (e.touches.length > 0) {
+        updatePosition(e.touches[0].clientX, e.touches[0].clientY);
+      }
+    };
+
+    const onTouchStart = (e) => {
+      if (e.touches.length > 0) {
+        if (!containerRef.current) return;
+        const rect = containerRef.current.getBoundingClientRect();
+        const x = e.touches[0].clientX - rect.left;
+        const y = e.touches[0].clientY - rect.top;
+        mouse.current = { x, y };
+        lastMouseRef.current = { x, y };
+      }
+    };
+
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("touchmove", onTouchMove, { passive: true });
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
+
+    return () => {
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchstart", onTouchStart);
+    };
   }, []);
 
   useEffect(() => {

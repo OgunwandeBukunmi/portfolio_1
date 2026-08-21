@@ -80,7 +80,7 @@ export default function Home() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       gsap.set(".words p", {
-        yPercent: 1000,
+        yPercent: 1500,
       });
 
       const tl = gsap.timeline({
@@ -95,7 +95,7 @@ export default function Home() {
         stagger: 0.08,
         delay: 1.5,
       }).to(".words p", {
-        yPercent: -1000,
+        yPercent: -1500,
         duration: 1.5,
         stagger: 0.08,
         delay: 1
@@ -257,7 +257,7 @@ export default function Home() {
   return (
     <>
       {/* loeader */}
-      <section className="fixed inset-0 w-screen h-[200vh] bg-red-500 z-50 loader overflow-hidden flex items-center justify-center -translate-y-50">
+      <section className="fixed inset-0 w-screen h-[100vh] bg-red-500 z-1000 loader overflow-hidden flex items-center justify-center">
 
         <div className="words flex flex-row items-center justify-center gap-2 ">
           <p className={`${panchang.className} md:text-8xl text-4xl font-extrabold tracking-widest leading-tight`}>W</p>
@@ -543,10 +543,12 @@ export default function Home() {
 
       {/* footer  https://www.youtube.com/watch?v=qqq4E6PU2vQ https://www.youtube.com/watch?v=zlp4Hj5EMCc */}
       {/* <footer></footer> */}
-      <section className="h-screen w-full relative">
+      <section className="h-[70vh] w-full relative">
         <TextSmearHover />
       </section>
+
     </>
+
 
 
 
