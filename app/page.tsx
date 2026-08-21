@@ -340,7 +340,7 @@ export default function Home() {
   return (
     <>
       {/* loeader */}
-      <section className="fixed inset-0 w-screen h-[100vh] bg-red-500 z-1000 loader overflow-hidden flex items-center justify-center">
+      <section className="absolute inset-0 w-screen h-[120vh] bg-red-500 z-1000 loader overflow-hidden flex items-center justify-center">
 
         <div className="words flex flex-row items-center justify-center gap-2 ">
           <p className={`${panchang.className} md:text-8xl text-4xl font-extrabold tracking-widest leading-tight`}>W</p>
@@ -607,7 +607,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-        <p className={`${chewy.className} text-4xl italic text-[#E2725B] font-extrabold tracking-widest leading-tight text-center items-center `}>....And soooo much more </p>
+        <p className={`${chewy.className} text-2xl italic text-[#E2725B] font-extrabold tracking-widest leading-tight text-center items-center `}>....And soooo much more... check my github </p>
       </section>
 
 
@@ -934,9 +934,10 @@ export default function Home() {
 
           </div>
         </div>
-        <p className={`${chewy.className} text-2xl md:text-4xl italic text-[#E2725B] font-extrabold tracking-widest leading-tight text-center items-center `}>....And soooo much people to come </p>
 
       </section>
+      <p className={`${chewy.className} text-2xl italic text-[#E2725B] font-extrabold tracking-widest leading-tight text-center items-center `}>....And soooo much people to come </p>
+
 
       {/* footer  https://www.youtube.com/watch?v=qqq4E6PU2vQ https://www.youtube.com/watch?v=zlp4Hj5EMCc */}
       {/* <footer></footer> */}
