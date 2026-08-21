@@ -887,41 +887,6 @@ export default function Home() {
                           {String(experience.length).padStart(2, "0")}
                         </span>
 
-                        <div className="flex items-center gap-2">
-
-                          <span
-                            className={`${geistSans.className}
-                      text-xs
-                      text-neutral-600
-                      transition-colors
-                      duration-300
-                      group-hover:text-neutral-300`}
-                          >
-                            VIEW
-                          </span>
-
-                          <span
-                            className="
-                        flex
-                        h-7
-                        w-7
-                        items-center
-                        justify-center
-                        rounded-full
-                        border
-                        border-white/10
-                        text-xs
-                        transition-all
-                        duration-300
-                        group-hover:border-[#E2725B]
-                        group-hover:text-[#E2725B]
-                      "
-                          >
-                            ↗
-                          </span>
-
-                        </div>
-
                       </div>
 
                     </div>
