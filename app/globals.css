@@ -21,7 +21,6 @@
 }
 
 canvas {
-  /* Allows normal page scrolling over the canvas */
   touch-action: pan-y;
 }
 

@@ -1,6 +1,6 @@
 "use client"
 
-import { panchang, geistSans } from "./fonts";
+import { panchang, geistSans, chewy } from "./fonts";
 import Image from "next/image";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { UserIcon, MailAtSign01Icon, X, Linkedin02Icon, Telephone, InstagramIcon, WorkIcon, Home01Icon, ArrowBigLeftDashIcon, ArrowBigRightDashIcon, Download02Icon, SpaceshipIcon, GithubIcon, GameIcon, GameController03Icon } from "@hugeicons/core-free-icons";
@@ -9,6 +9,7 @@ import gsap from "gsap";
 import Matter from "matter-js";
 import Lenis from "lenis";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import TextSmearHover from "./components/smeartext";
 
 import dynamic from 'next/dynamic';
@@ -110,6 +111,80 @@ export default function Home() {
     return () => ctx.revert();
   }, []);
 
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".experience-line",
+        {
+          scaleY: 0,
+          transformOrigin: "top center",
+        },
+        {
+          scaleY: 1,
+          duration: 1.5,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: ".experience-section",
+            start: "top 70%",
+            end: "bottom 70%",
+            scrub: 1,
+          },
+        }
+      );
+
+      gsap.utils.toArray<HTMLElement>(".experience-card").forEach((card, index) => {
+        const direction = index % 2 === 0 ? -60 : 60;
+
+        gsap.fromTo(
+          card,
+          {
+            opacity: 0,
+            x: direction,
+            y: 40,
+            scale: 0.96,
+          },
+          {
+            opacity: 1,
+            x: 0,
+            y: 0,
+            scale: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      });
+
+      gsap.utils.toArray<HTMLElement>(".experience-dot").forEach((dot) => {
+        gsap.fromTo(
+          dot,
+          {
+            scale: 0,
+            opacity: 0,
+          },
+          {
+            scale: 1,
+            opacity: 1,
+            duration: 0.5,
+            ease: "back.out(2)",
+            scrollTrigger: {
+              trigger: dot,
+              start: "top 80%",
+              toggleActions: "play none none reverse",
+            },
+          }
+        );
+      });
+
+
+    })
+  })
+
 
 
   const projects: { notworking: string, title: string, description: string, image: string, github: string, live: string, tags: string[], video: string }[] = [
@@ -182,7 +257,7 @@ export default function Home() {
       description: "Google forms younger brother",
       image: "/flexiform_image.png",
       github: "https://github.com/OgunwandeBukunmi/FlexiForm",
-      live: "https://flexiform-o812.vercel.app/",
+      live: "https://flexiform.vercel.app/",
       tags: ["Reactjs", "Firebase", "Tailwind CSS"],
       video: "/flexiform_video.mp4"
     },
@@ -231,28 +306,36 @@ export default function Home() {
 
   const skills: string[] = ["HTML", "CSS", "javaScript", "ReactJS", "NextJS", "Git", "GitHub", "Figma", "Tailwind CSS", ""] // and many more
 
-  const experience = [{
-    Project: "Krisitna",
-    review: "",
-    story: "Build a Portfolio for her"
-  },
-  {
-    project: "University Hub",
-    review: "",
-    story: "Build a platform for university students to seek help with their projects"
-  },
-  {
-    project: "Kinad Law firm",
-    review: "",
-    story: "Built a website for a law firm that I cold Emailed on Google"
-  },
-  {
-    project: "Ecommerce Store",
-    review: "",
-    story: "A fully functional e-commerce store with payment gateway integration"
-  },
-
-  ]
+  const experience = [
+    {
+      project: "Kristina",
+      type: "FREELANCE DEVELOPMENT",
+      date: "2025 — 2026",
+      review: "",
+      story: "Built a personal portfolio for a writer, focusing on a clean interface, strong typography and a simple content experience."
+    },
+    {
+      project: "University Hub",
+      type: "FREELANCE DEVELOPMENT",
+      date: "2025 — 2026",
+      review: "",
+      story: "Built a platform for university students to seek help with their projects and access useful academic resources."
+    },
+    {
+      project: "Kinad Law Firm",
+      type: "CLIENT PROJECT",
+      date: "2026",
+      review: "",
+      story: "Built a professional website for a law firm after discovering the business through cold outreach on Google."
+    },
+    {
+      project: "Ecommerce Store",
+      type: "E-COMMERCE",
+      date: "2026",
+      review: "",
+      story: "Built a fully functional e-commerce store with product management, shopping flow and payment gateway integration."
+    }
+  ];
 
   return (
     <>
@@ -325,29 +408,42 @@ export default function Home() {
             />
 
             {/* Socials */}
-            <div className="flex items-center justify-center gap-6 mt-8">
+            <div className="flex items-center justify-center gap-6 mt-8 p-4">
 
               <button className="p-3 rounded-full bg-neutral-900 hover:bg-neutral-800 transition">
-                <HugeiconsIcon icon={MailAtSign01Icon} size={22} />
+                <a target="_blank" href="mailto:redwayne1000@gmail.com">
+                  <HugeiconsIcon icon={MailAtSign01Icon} size={22} />
+
+                </a>
               </button>
 
               <button className="p-3 rounded-full bg-neutral-900 hover:bg-neutral-800 transition">
-                <HugeiconsIcon icon={X} size={20} />
+                <a target="_blank" href="https://x.com/waynethefuture">
+                  <HugeiconsIcon icon={X} size={20} />
+                </a>
               </button>
 
               <button className="p-3 rounded-full bg-neutral-900 hover:bg-neutral-800 transition">
-                <HugeiconsIcon icon={Linkedin02Icon} size={20} />
+                <a target="_blank" href="https://www.linkedin.com/in/oluwabukunmi-ogunwande-77075b27a/">
+                  <HugeiconsIcon icon={Linkedin02Icon} size={20} />
+                </a>
               </button>
 
               <button className="p-3 rounded-full bg-neutral-900 hover:bg-neutral-800 transition">
-                <HugeiconsIcon icon={Telephone} size={20} />
+                <a target="_blank" href="https://wa.me/2349161276874">
+                  <HugeiconsIcon icon={Telephone} size={20} />
+                </a>
               </button>
 
               <button className="p-3 rounded-full bg-neutral-900 hover:bg-neutral-800 transition">
-                <HugeiconsIcon icon={InstagramIcon} size={20} />
+                <a target="_blank" href="https://www.instagram.com/mister_grind101/">
+                  <HugeiconsIcon icon={InstagramIcon} size={20} />
+                </a>
               </button>
               <button className="p-3 rounded-full bg-neutral-900 hover:bg-neutral-800 transition">
-                <HugeiconsIcon icon={GithubIcon} size={20} />
+                <a target="_blank" href="https://github.com/OgunwandeBukunmi">
+                  <HugeiconsIcon icon={GithubIcon} size={20} />
+                </a>
               </button>
 
 
@@ -400,8 +496,12 @@ export default function Home() {
             </span>
           </p>
 
-          <button
-            className="mt-10 flex items-center gap-3 rounded-full bg-white px-8 py-4 hover:scale-105 transition"
+
+
+          <a
+            href="/oluwabukunmi.pdf"
+            download="OluwabukunmiCV.pdf"
+            className="mt-10 w-fit flex items-center gap-3 rounded-full bg-white px-8 py-4 hover:scale-105 transition"
           >
             <HugeiconsIcon
               icon={Download02Icon}
@@ -414,8 +514,9 @@ export default function Home() {
             >
               Download CV
             </span>
+          </a>
 
-          </button>
+
 
         </div>
 
@@ -506,38 +607,334 @@ export default function Home() {
             ))}
           </div>
         </div>
+        <p className={`${chewy.className} text-4xl italic text-[#E2725B] font-extrabold tracking-widest leading-tight text-center items-center `}>....And soooo much more </p>
       </section>
 
 
-      <section className="skills-footer min-h-screen w-full">
+      <section className="skills-footer min-h-screen w-full ">
         <PillPhysicsDemo />
       </section>
 
 
 
       {/* experience https://www.youtube.com/watch?v=qqq4E6PU2vQ */}
-      <section className="min-h-screen w-full py-8">
-        <div className="flex items-center justify-center">
-          <h1
-            className={`${panchang.className}
-            relative
-          text-center
-      text-4xl
-      sm:text-6xl
-      font-extrabold
-      tracking-widest
-      inline-block`}
-          >
-            EXP <span className={`${panchang.className} text-[#E2725B] text-2xl`}>Points</span>
+      {/* EXPERIENCE */}
+      <section className="experience-section relative min-h-screen w-full overflow-hidden py-24 px-6 md:px-12">
 
-            <button className="absolute top-0 -left-10  p-3 rounded-full ">
-              <HugeiconsIcon icon={GameIcon} size={20} />
-            </button>
-            <button className="absolute top-5 -right-10 p-3 rounded-full ">
-              <HugeiconsIcon icon={GameController03Icon} size={20} />
-            </button>
-          </h1>
+        {/* Background grid */}
+        <div
+          className="pointer-events-none absolute inset-0 -z-10 opacity-40"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px)",
+            backgroundSize: "60px 60px",
+          }}
+        />
+
+        {/* Heading */}
+        <div className="relative mx-auto mb-24 max-w-6xl">
+
+          <div className="flex items-center gap-4 mb-5">
+            <span className="h-px w-12 bg-[#E2725B]" />
+
+            <span
+              className={`${geistSans.className} text-xs md:text-sm tracking-[0.35em] text-neutral-500`}
+            >
+              CAREER / PROJECT LOG
+            </span>
+          </div>
+
+          <div className="relative inline-block">
+
+            <h1
+              className={`${panchang.className}
+        text-5xl
+        sm:text-7xl
+        md:text-8xl
+        font-extrabold
+        tracking-tight
+        leading-none`}
+            >
+              EXP
+              <span className="text-[#E2725B]">.</span>
+            </h1>
+
+            <span
+              className={`${panchang.className}
+        absolute
+        -right-8
+        -top-3
+        text-lg
+        md:text-2xl
+        text-[#E2725B]`}
+            >
+              Points
+            </span>
+
+          </div>
+
+          <p
+            className={`${geistSans.className}
+      mt-8
+      max-w-xl
+      text-neutral-500
+      text-sm
+      md:text-base
+      leading-relaxed`}
+          >
+            A collection of things I've built, people I've worked with,
+            and problems I've turned into software.
+          </p>
+
         </div>
+
+
+        {/* Timeline */}
+        <div className="relative mx-auto max-w-6xl">
+
+          {/* Timeline line */}
+          <div
+            className="
+        experience-line
+        absolute
+        left-[11px]
+        top-0
+        h-full
+        w-[1px]
+        bg-gradient-to-b
+        from-transparent
+        via-[#E2725B]
+        to-transparent
+        md:left-1/2
+        md:-translate-x-1/2
+      "
+          />
+
+          <div className="flex flex-col gap-20 md:gap-28">
+
+            {experience.map((item, index) => {
+
+              const isEven = index % 2 === 0;
+
+              return (
+                <div
+                  key={item.project}
+                  className={`
+              experience-card
+              relative
+              flex
+              w-full
+              ${isEven
+                      ? "md:justify-start"
+                      : "md:justify-end"
+                    }
+            `}
+                >
+
+                  {/* Timeline dot */}
+                  <div
+                    className="
+                experience-dot
+                absolute
+                left-[4px]
+                top-8
+                z-20
+                flex
+                h-4
+                w-4
+                items-center
+                justify-center
+                rounded-full
+                border
+                border-[#E2725B]
+                bg-black
+                md:left-1/2
+                md:-translate-x-1/2
+              "
+                  >
+                    <div className="h-1.5 w-1.5 rounded-full bg-[#E2725B]" />
+                  </div>
+
+
+                  {/* Card */}
+                  <div
+                    className={`
+                group
+                ml-12
+                w-[calc(100%-3rem)]
+                md:ml-0
+                md:w-[44%]
+                ${isEven
+                        ? "md:mr-auto md:pr-8"
+                        : "md:ml-auto md:pl-8"
+                      }
+              `}
+                  >
+
+                    <div
+                      className="
+                  relative
+                  overflow-hidden
+                  border
+                  border-white/10
+                  bg-zinc-950/70
+                  p-6
+                  md:p-8
+                  backdrop-blur-xl
+                  transition-all
+                  duration-500
+                  group-hover:border-[#E2725B]/60
+                  group-hover:-translate-y-2
+                "
+                    >
+
+                      {/* Orange corner */}
+                      <div
+                        className="
+                    absolute
+                    right-0
+                    top-0
+                    h-16
+                    w-16
+                    border-r
+                    border-t
+                    border-[#E2725B]/40
+                    transition-all
+                    duration-500
+                    group-hover:h-full
+                    group-hover:w-full
+                    group-hover:border-[#E2725B]/10
+                  "
+                      />
+
+                      {/* Number */}
+                      <div className="flex items-center justify-between">
+
+
+
+                        <span
+                          className={`${geistSans.className}
+                    text-[10px]
+                    tracking-[0.25em]
+                    text-neutral-600`}
+                        >
+                          {item.date}
+                        </span>
+
+                      </div>
+
+
+                      {/* Type */}
+                      <div className="mt-6 flex items-center gap-3">
+
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#E2725B]" />
+
+                        <span
+                          className={`${geistSans.className}
+                    text-[10px]
+                    font-semibold
+                    tracking-[0.2em]
+                    text-[#E2725B]`}
+                        >
+                          {item.type}
+                        </span>
+
+                      </div>
+
+
+                      {/* Project */}
+                      <h2
+                        className={`${panchang.className}
+                  mt-4
+                  text-3xl
+                  md:text-4xl
+                  font-extrabold
+                  tracking-tight
+                  text-white
+                  transition-transform
+                  duration-500
+                  group-hover:translate-x-1`}
+                      >
+                        {item.project}
+                      </h2>
+
+
+                      {/* Story */}
+                      <p
+                        className={`${geistSans.className}
+                  mt-5
+                  text-sm
+                  md:text-base
+                  leading-7
+                  text-neutral-500
+                  transition-colors
+                  duration-500
+                  group-hover:text-neutral-300`}
+                      >
+                        {item.story}
+                      </p>
+
+
+                      {/* Bottom */}
+                      <div className="mt-8 flex items-center justify-between border-t border-white/5 pt-5">
+
+                        <span
+                          className={`${geistSans.className}
+                    text-xs
+                    text-neutral-600`}
+                        >
+                          {String(index + 1).padStart(2, "0")} /{" "}
+                          {String(experience.length).padStart(2, "0")}
+                        </span>
+
+                        <div className="flex items-center gap-2">
+
+                          <span
+                            className={`${geistSans.className}
+                      text-xs
+                      text-neutral-600
+                      transition-colors
+                      duration-300
+                      group-hover:text-neutral-300`}
+                          >
+                            VIEW
+                          </span>
+
+                          <span
+                            className="
+                        flex
+                        h-7
+                        w-7
+                        items-center
+                        justify-center
+                        rounded-full
+                        border
+                        border-white/10
+                        text-xs
+                        transition-all
+                        duration-300
+                        group-hover:border-[#E2725B]
+                        group-hover:text-[#E2725B]
+                      "
+                          >
+                            ↗
+                          </span>
+
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+              );
+            })}
+
+          </div>
+        </div>
+        <p className={`${chewy.className} text-2xl md:text-4xl italic text-[#E2725B] font-extrabold tracking-widest leading-tight text-center items-center `}>....And soooo much people to come </p>
 
       </section>
 
