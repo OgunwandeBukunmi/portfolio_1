@@ -101,7 +101,7 @@ export default function Home() {
         stagger: 0.08,
         delay: 1
       }).to(".loader", {
-        yPercent: -100,
+        yPercent: -110,
         duration: 1,
         ease: "power3.inOut",
         onComplete: () => setLoading(false),
@@ -356,34 +356,40 @@ export default function Home() {
       {/* navbar */}
       <section className="fixed z-100 bg-black opacity-80 p-4 rounded-2xl backdrop-blur-2xl top-5 right-8">
         <nav className="flex flex-row items-center gap-4">
-          <HugeiconsIcon
-            icon={Home01Icon}
-            size={24}
-            color="currentColor"
-            strokeWidth={1.5}
+          <a href="#hero" >
+            <HugeiconsIcon
+              icon={Home01Icon}
+              size={24}
+              color="currentColor"
+              strokeWidth={1.5}
 
-          />
-          <HugeiconsIcon
-            icon={UserIcon}
-            size={24}
-            color="currentColor"
-            strokeWidth={1.5}
+            />
+          </a>
+          <a href="#projects" >
+            <HugeiconsIcon
+              icon={UserIcon}
+              size={24}
+              color="currentColor"
+              strokeWidth={1.5}
 
-          />
-          <HugeiconsIcon
-            icon={WorkIcon}
-            size={24}
-            color="currentColor"
-            strokeWidth={1.5}
+            />
+          </a>
+          <a href="#experience" >
+            <HugeiconsIcon
+              icon={WorkIcon}
+              size={24}
+              color="currentColor"
+              strokeWidth={1.5}
 
-          />
+            />
+          </a>
 
         </nav>
       </section>
 
 
       {/* hero */}
-      <section className="relative min-h-screen w-full flex flex-col-reverse md:flex-row items-center justify-center gap-12 px-6 md:px-12 py-16">
+      <section id="hero" className="relative min-h-screen w-full flex flex-col-reverse md:flex-row items-center justify-center gap-12 px-6 md:px-12 py-16">
 
         {/* Grid overlay */}
         <div
@@ -523,7 +529,7 @@ export default function Home() {
       </section>
 
       {/* projects */}
-      <section className="min-h-screen w-full flex flex-col items-center py-16 px-4 ">
+      <section id="projects" className="min-h-screen w-full flex flex-col items-center py-16 px-4 ">
 
         <div>
           <h1 className={`${panchang.className} text-4xl  md:text-7xl font-extrabold tracking-widest leading-tight my-8`}>
@@ -619,7 +625,7 @@ export default function Home() {
 
       {/* experience https://www.youtube.com/watch?v=qqq4E6PU2vQ */}
       {/* EXPERIENCE */}
-      <section className="experience-section relative min-h-screen w-full overflow-hidden py-24 px-6 md:px-12">
+      <section id="experience" className="experience-section relative min-h-screen w-full overflow-hidden py-24 px-6 md:px-12">
 
         {/* Background grid */}
         <div
